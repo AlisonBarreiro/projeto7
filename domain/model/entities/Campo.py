@@ -60,3 +60,8 @@ class Campo:
 
     def get_y1compPeqAreaD(self):
         return self.linha_lateral - EnumCampo.comprimentoPequenaArea.value
+
+    def get_penalD(self):
+        return self.linha_lateral - EnumCampo.penalidade.value
+
+

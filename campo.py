@@ -36,20 +36,40 @@ if __name__ == '__main__':
     plt.plot([campo.larguraGrandeArea, 0], [campo.get_y1comprimentoGrandeArea(), campo.get_y1comprimentoGrandeArea()],
              color="white")
     # Pequena Area Esquerda
-    plt.plot([0, campo.comprimentoPequenaArea], [campo.get_y2larguraPequenaArea(), campo.get_y2larguraPequenaArea()], color="white")
-    plt.plot([campo.comprimentoPequenaArea, campo.comprimentoPequenaArea], [campo.get_y2larguraPequenaArea(), campo.get_y1larguraPequenaArea()], color="white")
-    plt.plot([campo.comprimentoPequenaArea, 0.0], [campo.get_y1larguraPequenaArea(), campo.get_y1larguraPequenaArea()], color="white")
+    plt.plot([0, campo.comprimentoPequenaArea], [campo.get_y2larguraPequenaArea(),
+                                                 campo.get_y2larguraPequenaArea()], color="white")
+    plt.plot([campo.comprimentoPequenaArea, campo.comprimentoPequenaArea],
+             [campo.get_y2larguraPequenaArea(), campo.get_y1larguraPequenaArea()], color="white")
+    plt.plot([campo.comprimentoPequenaArea, 0.0], [campo.get_y1larguraPequenaArea(),
+                                                   campo.get_y1larguraPequenaArea()], color="white")
     # Area Penal  Esquerda
     penalEsquerdo = plt.Circle((campo.penalidade, campo.get_largura2()), 0.4, color="white")
     ax.add_patch(penalEsquerdo)
+    # Arco Esquerdo
+    arcoEsquerdo = Arc((campo.penalidade, campo.get_largura2()), height=18.32, width=18.32, angle=0, theta1=310,
+                       theta2=50, color="white")
+    ax.add_patch(arcoEsquerdo)
 
     # Área Penal Direita
-    plt.plot([campo.get_linha_lateral(), campo.get_y1compGraAreaD()], [campo.get_y2comprimentoGrandeArea(), campo.get_y2comprimentoGrandeArea()], color="white")
-    plt.plot([campo.get_y1compGraAreaD(), campo.get_y1compGraAreaD()], [campo.get_y2comprimentoGrandeArea(), campo.get_y1comprimentoGrandeArea()], color="white")
-    plt.plot([campo.get_y1compGraAreaD(), campo.get_linha_lateral()], [campo.get_y1comprimentoGrandeArea(), campo.get_y1comprimentoGrandeArea()], color="white")
+    plt.plot([campo.get_linha_lateral(), campo.get_y1compGraAreaD()],
+             [campo.get_y2comprimentoGrandeArea(), campo.get_y2comprimentoGrandeArea()], color="white")
+    plt.plot([campo.get_y1compGraAreaD(), campo.get_y1compGraAreaD()],
+             [campo.get_y2comprimentoGrandeArea(), campo.get_y1comprimentoGrandeArea()], color="white")
+    plt.plot([campo.get_y1compGraAreaD(), campo.get_linha_lateral()],
+             [campo.get_y1comprimentoGrandeArea(), campo.get_y1comprimentoGrandeArea()], color="white")
     # Pequena Area Direita
-    plt.plot([campo.get_linha_lateral(), campo.get_y1compPeqAreaD()], [campo.get_y2larguraPequenaArea(), campo.get_y2larguraPequenaArea()], color="white")
-    plt.plot([campo.get_y1compPeqAreaD(), campo.get_y1compPeqAreaD()], [campo.get_y2larguraPequenaArea(), campo.get_y1larguraPequenaArea()], color="white")
-    plt.plot([campo.get_y1compPeqAreaD(), campo.get_linha_lateral()], [campo.get_y1larguraPequenaArea(), campo.get_y1larguraPequenaArea()], color="white")
+    plt.plot([campo.get_linha_lateral(), campo.get_y1compPeqAreaD()],
+             [campo.get_y2larguraPequenaArea(), campo.get_y2larguraPequenaArea()], color="white")
+    plt.plot([campo.get_y1compPeqAreaD(), campo.get_y1compPeqAreaD()],
+             [campo.get_y2larguraPequenaArea(), campo.get_y1larguraPequenaArea()], color="white")
+    plt.plot([campo.get_y1compPeqAreaD(), campo.get_linha_lateral()],
+             [campo.get_y1larguraPequenaArea(), campo.get_y1larguraPequenaArea()], color="white")
+    # Area Penal  Direita
+    penalDireito = plt.Circle((campo.get_penalD(), campo.get_largura2()), 0.4, color="white")
+    ax.add_patch(penalDireito)
+    # Arco Direito
+    arcoDireito = Arc((campo.get_penalD(), campo.get_largura2()), height=18.32, width=18.32, angle=0,
+                       theta1=130, theta2=230, color="white")
+    ax.add_patch(arcoDireito)
 
     plt.show()
