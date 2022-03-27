@@ -1,9 +1,9 @@
-
 # Plotting the ball along with the position of the ball
 # Run with createPitch([]) to just display the pitch
 import matplotlib.pyplot as plt
 from matplotlib.patches import Arc
-from application.util.enums import Enums
+from application.util.enums.EnumCampo import EnumCampo
+from domain.model.entities.Campo import Campo
 
 if __name__ == '__main__':
     fig = plt.figure()
@@ -12,39 +12,44 @@ if __name__ == '__main__':
 
     # a função plot funciona assim: [x1, x2] [y1, y2]
 
-    largura = Enums.Campo.largura.value
-    largura2 = largura / 2
+    campo = Campo(0)
 
-    comprimento = Enums.Campo.comprimento.value
-    comprimento2 = comprimento / 2
-
-    raioCentral = Enums.Campo.circuloCentralRaio.value
-    saidaDiametro = Enums.Campo.saidaDiametro.value
-
-    larguraGrandeArea = Enums.Campo.larguraGrandeArea.value
-    comprimentoGrandeArea = Enums.Campo.comprimentoGrandeArea.value
-
-    y1comprimentoGrandeArea = (largura-comprimentoGrandeArea) / 2
-    y2comprimentoGrandeArea = (comprimentoGrandeArea+y1comprimentoGrandeArea)
-
-
-    #Criar linhas fundo, laterais e Central
-    plt.plot([0, 0], [0, Enums.Campo.largura.value], color="white")
-    plt.plot([0, comprimento], [largura, largura], color="white")
-    plt.plot([comprimento, comprimento], [largura, 0], color="white")
-    plt.plot([comprimento, 0], [0, 0], color="white")
-    plt.plot([comprimento2, comprimento2], [0, largura], color="white")
+    # Criar linhas fundo, laterais e Central
+    plt.plot([0, 0], [0, campo.get_linha_de_fundo()], color="white")
+    plt.plot([0, campo.get_linha_lateral()], [campo.get_linha_de_fundo(), campo.get_linha_de_fundo()], color="white")
+    plt.plot([campo.get_linha_lateral(), campo.get_linha_lateral()], [campo.get_linha_de_fundo(), 0], color="white")
+    plt.plot([campo.get_linha_lateral(), 0], [0, 0], color="white")
+    plt.plot([campo.get_comprimento2(), campo.get_comprimento2()], [0, campo.get_linha_de_fundo()], color="white")
 
     # Atribuir círculos a variáveis sem preencher o círculo central!
-    centreCircle = plt.Circle((comprimento2, largura2), raioCentral, color="white", fill=False)
-    centreSpot = plt.Circle((comprimento2, largura2), saidaDiametro, color="white")
+    centreCircle = plt.Circle((campo.get_comprimento2(), campo.get_largura2()), campo.raioCentral, color="white", fill=False)
+    centreSpot = plt.Circle((campo.get_comprimento2(), campo.get_largura2()), campo.saidaDiametro, color="white")
     # Desenhe os círculos para o nosso plot
     ax.add_patch(centreCircle)
     ax.add_patch(centreSpot)
 
     # Área Penal Esquerda
-    plt.plot([larguraGrandeArea, larguraGrandeArea], [y1comprimentoGrandeArea, y2comprimentoGrandeArea], color="white")
-    plt.plot([0, larguraGrandeArea], [y2comprimentoGrandeArea, y2comprimentoGrandeArea], color="white")
-    plt.plot([larguraGrandeArea, 0], [y1comprimentoGrandeArea, y1comprimentoGrandeArea], color="white")
+    plt.plot([campo.larguraGrandeArea, campo.larguraGrandeArea],
+             [campo.get_y2comprimentoGrandeArea(), campo.get_y1comprimentoGrandeArea()], color="white")
+    plt.plot([0, campo.larguraGrandeArea], [campo.get_y2comprimentoGrandeArea(), campo.get_y2comprimentoGrandeArea()],
+             color="white")
+    plt.plot([campo.larguraGrandeArea, 0], [campo.get_y1comprimentoGrandeArea(), campo.get_y1comprimentoGrandeArea()],
+             color="white")
+    # Pequena Area Esquerda
+    plt.plot([0, campo.comprimentoPequenaArea], [campo.get_y2larguraPequenaArea(), campo.get_y2larguraPequenaArea()], color="white")
+    plt.plot([campo.comprimentoPequenaArea, campo.comprimentoPequenaArea], [campo.get_y2larguraPequenaArea(), campo.get_y1larguraPequenaArea()], color="white")
+    plt.plot([campo.comprimentoPequenaArea, 0.0], [campo.get_y1larguraPequenaArea(), campo.get_y1larguraPequenaArea()], color="white")
+    # Area Penal  Esquerda
+    penalEsquerdo = plt.Circle((campo.penalidade, campo.get_largura2()), 0.4, color="white")
+    ax.add_patch(penalEsquerdo)
+
+    # Área Penal Direita
+    plt.plot([campo.get_linha_lateral(), campo.get_y1compGraAreaD()], [campo.get_y2comprimentoGrandeArea(), campo.get_y2comprimentoGrandeArea()], color="white")
+    plt.plot([campo.get_y1compGraAreaD(), campo.get_y1compGraAreaD()], [campo.get_y2comprimentoGrandeArea(), campo.get_y1comprimentoGrandeArea()], color="white")
+    plt.plot([campo.get_y1compGraAreaD(), campo.get_linha_lateral()], [campo.get_y1comprimentoGrandeArea(), campo.get_y1comprimentoGrandeArea()], color="white")
+    # Pequena Area Direita
+    plt.plot([campo.get_linha_lateral(), campo.get_y1compPeqAreaD()], [campo.get_y2larguraPequenaArea(), campo.get_y2larguraPequenaArea()], color="white")
+    plt.plot([campo.get_y1compPeqAreaD(), campo.get_y1compPeqAreaD()], [campo.get_y2larguraPequenaArea(), campo.get_y1larguraPequenaArea()], color="white")
+    plt.plot([campo.get_y1compPeqAreaD(), campo.get_linha_lateral()], [campo.get_y1larguraPequenaArea(), campo.get_y1larguraPequenaArea()], color="white")
 
     plt.show()
