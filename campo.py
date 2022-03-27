@@ -35,6 +35,11 @@ if __name__ == '__main__':
     plt.plot([comprimento, 0], [0, 0], color="white")
     plt.plot([comprimento2, comprimento2], [0, largura], color="white")
 
+    # Atribuir círculos a variáveis sem preencher o círculo central!
+    centreCircle = plt.Circle((comprimento2, largura2), raioCentral, color="white", fill=False)
+    centreSpot = plt.Circle((comprimento2, largura2), saidaDiametro, color="white")
+
+
 
 
     plt.show()
