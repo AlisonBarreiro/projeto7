@@ -42,4 +42,9 @@ if __name__ == '__main__':
     ax.add_patch(centreCircle)
     ax.add_patch(centreSpot)
 
+    # Área Penal Esquerda
+    plt.plot([larguraGrandeArea, larguraGrandeArea], [y1comprimentoGrandeArea, y2comprimentoGrandeArea], color="white")
+    plt.plot([0, larguraGrandeArea], [y2comprimentoGrandeArea, y2comprimentoGrandeArea], color="white")
+    plt.plot([larguraGrandeArea, 0], [y1comprimentoGrandeArea, y1comprimentoGrandeArea], color="white")
+
     plt.show()
