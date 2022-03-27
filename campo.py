@@ -28,3 +28,13 @@ if __name__ == '__main__':
     y2comprimentoGrandeArea = (comprimentoGrandeArea+y1comprimentoGrandeArea)
 
 
+    #Criar linhas fundo, laterais e Central
+    plt.plot([0, 0], [0, Enums.Campo.largura.value], color="white")
+    plt.plot([0, comprimento], [largura, largura], color="white")
+    plt.plot([comprimento, comprimento], [largura, 0], color="white")
+    plt.plot([comprimento, 0], [0, 0], color="white")
+    plt.plot([comprimento2, comprimento2], [0, largura], color="white")
+
+
+
+    plt.show()
