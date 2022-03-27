@@ -1,16 +1,33 @@
-# This is a sample Python script.
+import math
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+from application.util.enums import Enums
 
 
-# Press the green button in the gutter to run the script.
+def perimetro(c, l):
+    return int(2 * (c + l))
+
+
+def area(c, l):
+    return int(c * l)
+
+
+def areaPorJogador(c, l):
+    return int((c * l) / 22)
+
+
+def areaDoCirculoCentral(raio):
+    return int(3.14 * (math.pow(raio, 2)))
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    print("Perímetro " +
+          str(perimetro(Enums.Campo.comprimento.value, Enums.Campo.largura.value)))
+    print("O campo de futebol possui " +
+          str(area(Enums.Campo.comprimento.value, Enums.Campo.largura.value)) + "m2")
+    print("Cada jogador pode ocupar uma área de " +
+          str(areaPorJogador(Enums.Campo.comprimento.value, Enums.Campo.largura.value)) + "m2")
+    print("Area do Gol " +
+          str(area(Enums.Campo.comprimentoTrave.value,
+                   Enums.Campo.larguraTrave.value)) + "m2, ou seja, a área que o goleiro tem que defender.")
+    print("Area do círculo central " +
+          str(areaDoCirculoCentral(Enums.Campo.circuloCentralRaio.value)) + "m2")

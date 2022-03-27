@@ -62,4 +62,3 @@ class Bola(Enum):
     # Diâmetro  1,5% de diferença
 
 
-print(Campo.comprimentoCampo.value)
