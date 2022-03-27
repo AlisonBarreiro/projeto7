@@ -38,8 +38,8 @@ if __name__ == '__main__':
     # Atribuir círculos a variáveis sem preencher o círculo central!
     centreCircle = plt.Circle((comprimento2, largura2), raioCentral, color="white", fill=False)
     centreSpot = plt.Circle((comprimento2, largura2), saidaDiametro, color="white")
-
-
-
+    # Desenhe os círculos para o nosso plot
+    ax.add_patch(centreCircle)
+    ax.add_patch(centreSpot)
 
     plt.show()
