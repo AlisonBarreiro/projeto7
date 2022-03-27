@@ -1,3 +1,5 @@
+import math
+
 from application.util.enums.EnumCampo import EnumCampo
 
 
@@ -64,4 +66,17 @@ class Campo:
     def get_penalD(self):
         return self.linha_lateral - EnumCampo.penalidade.value
 
+    def get_perimetro(self):
+        return int(2 * (self.linha_lateral + self.linha_de_fundo))
 
+    def get_area(self):
+        return int(self.linha_lateral * self.linha_de_fundo)
+
+    def get_areaDoGol(self):
+        return int(EnumCampo.comprimentoTrave.value * EnumCampo.larguraTrave.value)
+
+    def get_areaPorJogador(self):
+        return int((self.linha_lateral * self.linha_de_fundo) / 22)
+
+    def get_areaDoCirculoCentral(self):
+        return int(math.pi * (math.pow(self.raioCentral, 2)))
