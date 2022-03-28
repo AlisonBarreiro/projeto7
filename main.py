@@ -6,16 +6,18 @@ from matplotlib.patches import Arc
 from scipy.integrate import solve_ivp
 
 from application.util.enums.EnumCampo import EnumCampo
+from domain.model.entities.Bola import Bola
 from domain.model.entities.Campo import Campo
 
 if __name__ == '__main__':
     campo = Campo(0)
+    bola = Bola(0)
     fig = plt.figure()
     ax = fig.add_subplot(1, 1, 1)
     ax.set_facecolor('xkcd:green')
 
-    print("Perímetro " +
-          str(campo.get_perimetro()))
+    print("Perímetro do campo: " +
+          str(campo.get_perimetro()) + " metros")
     print("O campo de futebol possui " +
           str(campo.get_area()) + "m2")
     print("Cada jogador pode ocupar uma área de " +
@@ -24,7 +26,6 @@ if __name__ == '__main__':
           str(campo.get_areaDoGol()) + "m2, ou seja, a área que o goleiro tem que defender.")
     print("Area do círculo central " +
           str(campo.get_areaDoCirculoCentral()) + "m2")
-
 
     # a função plot funciona assim: [x1, x2] [y1, y2]
 
@@ -36,7 +37,8 @@ if __name__ == '__main__':
     plt.plot([campo.get_comprimento2(), campo.get_comprimento2()], [0, campo.get_linha_de_fundo()], color="white")
 
     # Atribuir círculos a variáveis sem preencher o círculo central!
-    centreCircle = plt.Circle((campo.get_comprimento2(), campo.get_largura2()), campo.raioCentral, color="white", fill=False)
+    centreCircle = plt.Circle((campo.get_comprimento2(), campo.get_largura2()), campo.raioCentral, color="white",
+                              fill=False)
     centreSpot = plt.Circle((campo.get_comprimento2(), campo.get_largura2()), campo.saidaDiametro, color="white")
     # Desenhe os círculos para o nosso plot
     ax.add_patch(centreCircle)
@@ -83,8 +85,10 @@ if __name__ == '__main__':
     ax.add_patch(penalDireito)
     # Arco Direito
     arcoDireito = Arc((campo.get_penalD(), campo.get_largura2()), height=18.32, width=18.32, angle=0,
-                       theta1=130, theta2=230, color="white")
+                      theta1=130, theta2=230, color="white")
     ax.add_patch(arcoDireito)
+
+
 
 
     plt.show()
